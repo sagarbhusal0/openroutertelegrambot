@@ -1,0 +1,281 @@
+[
+  {
+      "id": "google/gemma-3-4b-it:free",
+      "name": "Google: Gemma 3 4B (free)",
+      "description": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs. Handles context windows up to 128k tokens.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwq-32b:free",
+      "name": "Qwen: QWQ 32B (free)",
+      "description": "A distilled version of the DeepSeek-R1 model, optimized for reasoning domains like mathematics, coding, and logic.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "rekaai/reka-flash-3:free",
+      "name": "RekaAI: Reka Flash 3 (free)",
+      "description": "Experimental release with limited multilingual understanding capabilities.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemma-3-12b-it:free",
+      "name": "Google: Gemma 3 12B (free)",
+      "description": "Part of the Gemma 3 family, offering improved math, reasoning, and chat capabilities.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "moonshotai/moonlight-16b-a3b-instruct:free",
+      "name": "MoonShotAI: MoonLight 16B A3B Instruct (free)",
+      "description": "Optimized for low-latency performance across common AI tasks.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "nousresearch/deephermes-3-llama-3-8b-preview:free",
+      "name": "NousResearch: DeepHermes 3 Llama 3 8B Preview (free)",
+      "description": "A preview model based on Llama 3, designed for high-quality dialogue use cases.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwq-32b-preview:free",
+      "name": "Qwen: QWQ 32B Preview (free)",
+      "description": "Preview version of Qwen's 32B parameter model.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-r1-zero:free",
+      "name": "DeepSeek: DeepSeek R1 Zero (free)",
+      "description": "Fully open-source model with strong performance in reasoning domains.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-chat:free",
+      "name": "DeepSeek: DeepSeek Chat (free)",
+      "description": "Open-source model optimized for chat applications.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemini-2.0-flash-thinking-exp:free",
+      "name": "Google: Gemini 2.0 Flash Thinking Experimental (free)",
+      "description": "Experimental version of Gemini Flash optimized for speed and efficiency.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-r1:free",
+      "name": "DeepSeek: DeepSeek R1 (free)",
+      "description": "Open-sourced model with fully open reasoning tokens.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "sophosympatheia/rogue-rose-103b-v0.2:free",
+      "name": "Sophosympatheia: Rogue Rose 103B v0.2 (free)",
+      "description": "A large language model with strong reasoning capabilities.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemini-2.0-flash-exp:free",
+      "name": "Google: Gemini 2.0 Flash Experimental (free)",
+      "description": "Experimental version of Gemini Flash with reduced latency.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemma-2-27b-it:free",
+      "name": "Google: Gemma 2 27B (free)",
+      "description": "Advanced open-source language model built using Google's research.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemini-exp-1206:free",
+      "name": "Google: Gemini Experimental 1206 (free)",
+      "description": "Experimental release (December 6, 2024) of Gemini.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "meta-llama/llama-3.3-70b-instruct:free",
+      "name": "Meta-Llama: Llama 3.3 70B Instruct (free)",
+      "description": "Meta's latest class of model optimized for high-quality dialogue.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "mistralai/mistral-small-24b-instruct-2501:free",
+      "name": "MistralAI: Mistral Small 24B Instruct 2501 (free)",
+      "description": "A 24B-parameter language model optimized for low-latency performance.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-r1-distill-qwen-32b:free",
+      "name": "DeepSeek: DeepSeek R1 Distill Qwen 32B (free)",
+      "description": "Distilled version of Qwen 2.5 32B, achieving state-of-the-art results.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-r1-distill-qwen-14b:free",
+      "name": "DeepSeek: DeepSeek R1 Distill Qwen 14B (free)",
+      "description": "Distilled version of Qwen 2.5 14B, outperforming OpenAI's o1-mini.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "deepseek/deepseek-r1-distill-llama-70b:free",
+      "name": "DeepSeek: DeepSeek R1 Distill Llama 70B (free)",
+      "description": "Distilled version of Llama 70B, optimized for reasoning tasks.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemini-2.0-flash-lite-preview-02-05:free",
+      "name": "Google: Gemini 2.0 Flash Lite Preview (free)",
+      "description": "Preview version of Gemini Flash Lite with faster time-to-first-token.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwen2.5-vl-72b-instruct:free",
+      "name": "Qwen: Qwen 2.5 VL 72B Instruct (free)",
+      "description": "Multimodal LLM from the Qwen Team with enhancements for vision-language tasks.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwen-2.5-coder-32b-instruct:free",
+      "name": "Qwen: Qwen 2.5 Coder 32B Instruct (free)",
+      "description": "Specialized for coding tasks, part of the Qwen 2.5 family.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "nvidia/llama-3.1-nemotron-70b-instruct:free",
+      "name": "NVIDIA: Llama 3.1 Nemotron 70B Instruct (free)",
+      "description": "Optimized for natural language tasks and multiturn text/code chat.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "google/gemma-2-9b-it:free",
+      "name": "Google: Gemma 2 9B (free)",
+      "description": "Open-source language model suitable for text generation tasks.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "meta-llama/llama-3.2-3b-instruct:free",
+      "name": "Meta-Llama: Llama 3.2 3B Instruct (free)",
+      "description": "Smaller variant of Meta's Llama 3 series, optimized for dialogue.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "meta-llama/llama-3.2-1b-instruct:free",
+      "name": "Meta-Llama: Llama 3.2 1B Instruct (free)",
+      "description": "Compact version of Llama 3, designed for lightweight use cases.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "meta-llama/llama-3.2-11b-vision-instruct:free",
+      "name": "Meta-Llama: Llama 3.2 11B Vision Instruct (free)",
+      "description": "Vision-enabled variant of Llama 3, supporting multimodal tasks.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwen-2.5-72b-instruct:free",
+      "name": "Qwen: Qwen 2.5 72B Instruct (free)",
+      "description": "Latest series of Qwen large language models with significant improvements.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "qwen/qwen-2-7b-instruct:free",
+      "name": "Qwen: Qwen 2 7B Instruct (free)",
+      "description": "Transformer-based model excelling in language understanding and coding.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  },
+  {
+      "id": "mistralai/mistral-nemo:free",
+      "name": "MistralAI: Mistral Nemo (free)",
+      "description": "Multimodal model supporting image and video inputs.",
+      "pricing": {
+          "prompt": "0",
+          "completion": "0"
+      }
+  }
+]
