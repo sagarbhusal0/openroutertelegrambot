@@ -6,7 +6,7 @@ def get_model_info(user_message):
     """
     for model in models:
         model_id_command = f"/{model.model_id.split('/')[1].split(':')[0].replace('-', '')}"
-        if user_message.lower() == model_id_command:
+        if user_message.lower() == model_id_command.lower(): # Added .lower() to model_id_command
             return model
     return None
 
