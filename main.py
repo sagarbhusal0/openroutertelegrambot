@@ -3,10 +3,11 @@ import requests
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-from commands import get_model_info, list_available_models
-from models import Model  # Import the Model class
-import json  # Import the json library
-import re  # Import the regular expression library
+from models import Model, models  # Ensure models is imported correctly
+import json
+import re
+import telegramify_markdown
+from telegramify_markdown.customize import get_runtime_config
 
 # Construct the path to the .env file
 env_path = Path('.') / '.env'
@@ -28,6 +29,14 @@ def split_message(text, chunk_size=4000):
     """Splits a long text into chunks of a specified size."""
     return [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
 
+# Customize symbols using the deprecated method (temporary workaround)
+config = get_runtime_config()
+config.markdown_symbol.head_level_1 = "📌"  # Customize the first level title symbol
+config.markdown_symbol.link = "🔗"  # Customize the link symbol
+config.cite_expandable = True  # Enable expandable citation
+config.strict_markdown = True  # Use strict Markdown
+config.unescape_html = False  # Do not unescape HTML
+
 # Welcome message for the /start command
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -35,7 +44,7 @@ def send_welcome(message):
     welcome_text = ("Hi, I am your AI assistant! 🤖\n"
                     "Please select a model from the /models list using /models.\n"
                     "To select a model, send its corresponding command (e.g., `/qwq32b`).")
-    bot.send_message(chat_id, welcome_text, parse_mode='Markdown')
+    bot.send_message(chat_id, welcome_text)
     # Clear any previously selected model for this chat on /start
     if chat_id in user_selected_models:
         del user_selected_models[chat_id]
@@ -46,9 +55,9 @@ def list_models(message):
     available_models = list_available_models()
     model_list = []
     for model_id, name in available_models:
-        cleaned_command = re.sub(r'[\s.:,]', '', f"/{model_id}")
-        model_list.append(f"{cleaned_command} {name}")  # Inline code for commands
-    bot.send_message(message.chat.id, f"Available models:\n{chr(10).join(model_list)}\n\nTo select a model, send its corresponding command (e.g., `{re.sub(r'[\\s.:,]', '', '/qwq32b')}`).", parse_mode='Markdown')
+        cleaned_command = f"/{model_id}"
+        model_list.append(f"{cleaned_command} {name}")
+    bot.send_message(message.chat.id, f"Available models:\n{chr(10).join(model_list)}\n\nTo select a model, send its corresponding command (e.g., `/mistralsmall3124binstruct`).")
 
 # Handle all other messages
 @bot.message_handler(func=lambda message: True)
@@ -58,21 +67,24 @@ def respond_to_message(message):
 
     # Exit the chat if the user types 'exit'
     if user_message.lower() == 'exit':
-        bot.send_message(chat_id, "Goodbye! Feel free to start a new chat anytime.", parse_mode='Markdown')
+        bot.send_message(chat_id, "Goodbye! Feel free to start a new chat anytime.")
         # Clear selected model on exit
         if chat_id in user_selected_models:
             del user_selected_models[chat_id]
         return
 
     # Check if the user is trying to select a model
-    cleaned_user_message = re.sub(r'[\s.:,]', '', user_message)
+    cleaned_user_message = re.sub(r'[\s.:,]', '', user_message).lower()
+    print(f"Debug: cleaned_user_message = {cleaned_user_message}")  # Debug print
     selected_model = get_model_info(cleaned_user_message)
+
     if selected_model:
+        print(f"Debug: Selected model = {selected_model.name}")  # Debug print
         # Store the selected model for this chat ID
         user_selected_models[chat_id] = selected_model
         # Send confirmation of the selected model
         description = selected_model.description
-        bot.send_message(chat_id, f"You selected: *{selected_model.name}*\n{description}", parse_mode='Markdown')
+        bot.send_message(chat_id, f"You selected: {selected_model.name}\n{description}")
     elif chat_id in user_selected_models:
         # If a model is already selected, use it for the current message
         selected_model = user_selected_models[chat_id]
@@ -101,89 +113,18 @@ def respond_to_message(message):
                     response_json = response.json()
                     bot_response = response_json.get('choices', [{}])[0].get('message', {}).get('content', '')
 
-                    # Basic sanitization
-                    sanitized_response = bot_response.replace("*", "\\*").replace("_", "\\_").replace("`", "\\`")
-
-                    formatted_response = ""
-                    lines = sanitized_response.split('\n')
-                    if lines:
-                        in_code_block = False
-                        code_language = ""
-                        for line in lines:
-                            stripped_line = line.strip()
-                            if stripped_line.startswith("```"):
-                                if not in_code_block:
-                                    in_code_block = True
-                                    match = re.match(r"```(\w+)", stripped_line)
-                                    if match:
-                                        code_language = match.group(1).lower()
-                                        formatted_response += f"```{code_language}\n"
-                                    else:
-                                        formatted_response += "```\n"
-                                else:
-                                    in_code_block = False
-                                    code_language = ""
-                                    formatted_response += "```\n"
-                            elif in_code_block:
-                                formatted_response += f"{line}\n"
-                            elif stripped_line.startswith("**Explanation:**"):
-                                formatted_response += "**Explanation:**\n"
-                            elif stripped_line.startswith("*"):
-                                formatted_response += f"{line}\n"
-                            elif stripped_line.startswith("**How to run it:**"):
-                                formatted_response += "**How to run it:**\n"
-                            elif line.startswith("1. **"):
-                                formatted_response += f"{line}\n"
-                            elif line.startswith("2. **"):
-                                formatted_response += f"{line}\n"
-                            elif re.match(r"^\s+\*\s+\*", stripped_line):  # Handle nested bullets
-                                formatted_response += f"{line}\n"
-                            elif stripped_line == r"\`\`\`python":
-                                formatted_response += "```python\n"
-                            elif stripped_line == r"print(\"Hello, world!\")":
-                                formatted_response += "print(\"Hello, world!\")\n"
-                            elif stripped_line == r"\`\`\`":
-                                formatted_response += "```\n"
-                            elif stripped_line == r"\`\`\`javascript":
-                                formatted_response += "```javascript\n"
-                            elif stripped_line == r"console.log(\"Hello, World!\");":
-                                formatted_response += "console.log(\"Hello, World!\");\n"
-                            elif stripped_line == r"\`\`\`html":
-                                formatted_response += "```html\n"
-                            elif stripped_line == r"<!DOCTYPE html>":
-                                formatted_response += "<!DOCTYPE html>\n"
-                            elif stripped_line == r"<html>":
-                                formatted_response += "<html>\n"
-                            elif stripped_line == r"<head>":
-                                formatted_response += "<head>\n"
-                            elif stripped_line == r" <title>Hello World</title>":
-                                formatted_response += " <title>Hello World</title>\n"
-                            elif stripped_line == r"</head>":
-                                formatted_response += "</head>\n"
-                            elif stripped_line == r"<body>":
-                                formatted_response += "<body>\n"
-                            elif stripped_line == r" <script>":
-                                formatted_response += " <script>\n"
-                            elif stripped_line == r" console.log(\"Hello, World!\");":
-                                formatted_response += " console.log(\"Hello, World!\");\n"
-                            elif stripped_line == r" </script>":
-                                formatted_response += " </script>\n"
-                            elif stripped_line == r"</body>":
-                                formatted_response += "</body>\n"
-                            elif stripped_line == r"</html>":
-                                formatted_response += "</html>\n"
-                            else:
-                                formatted_response += f"{line}\n"
+                    # Telegram MarkdownV2 formatting
+                    converted = telegramify_markdown.standardize(bot_response)
 
                     # Split the formatted response into chunks
-                    response_chunks = split_message(formatted_response.strip())
+                    response_chunks = split_message(converted.strip())
 
                     # Send each chunk as a separate message
                     for chunk in response_chunks:
-                        bot.send_message(chat_id, chunk, parse_mode='Markdown')
+                        bot.send_message(chat_id, chunk, parse_mode="MarkdownV2")
 
                 except json.JSONDecodeError:
-                    bot.send_message(chat_id, "Sorry, I received an invalid JSON response.", parse_mode='Markdown')
+                    bot.send_message(chat_id, "Sorry, I received an invalid JSON response.")
             else:
                 bot_response = f"Error occurred while processing your request. Status code: {response.status_code}"
                 bot.send_message(chat_id, bot_response)
@@ -191,8 +132,25 @@ def respond_to_message(message):
             bot_response = f"An unexpected error occurred: {str(e)}"
             bot.send_message(chat_id, bot_response)
     else:
-        # No model selected yet
-        bot.send_message(chat_id, "Please select a valid model from the /models list by sending its corresponding command (e.g., `/qwq32b`).", parse_mode='Markdown')
+        bot.send_message(chat_id, "Please select a valid model from the /models list by sending its corresponding command (e.g., `/mistralsmall3124binstruct`).")
+
+def get_model_info(user_message):
+    """
+    Parses the user message and returns the model object if a valid model ID is found.
+    """
+    for model in models:
+        # Process the model ID to match the expected command format
+        model_id_command = f"/{model.model_id.split('/')[1].split(':')[0].replace('-', '').replace('.', '').lower()}"
+        print(f"Debug: model_id_command = {model_id_command}")  # Debug print
+        if user_message == model_id_command:
+            return model
+    return None
+
+def list_available_models():
+    """
+    Returns a list of tuples containing the modified model ID and the model name.
+    """
+    return [(model.model_id.split('/')[1].split(':')[0].replace('-', '').replace('.', '').lower(), f"{model.name.split(':')[0]}: {model.name.split(':')[1]}") for model in models]
 
 # Start polling
 if __name__ == "__main__":
