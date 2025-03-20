@@ -53,13 +53,11 @@ The OpenRouter Telegram Bot allows you to interact with various models through T
 - `/models`: List all 33 supported models.
 
 
-## Example Interactions
 
-To interact with a model named `example_model`, you can use the following command in your Telegram chat with the bot:
 
 # AI Model List
 
-This Telegram Open Router contains a list of various AI models along with brief descriptions. Each model is numbered for easy reference.
+This Telegram OpenRouter bot contains a list of various AI models along with brief descriptions. Each model is numbered for easy reference.
 
 ## AI Models
 
