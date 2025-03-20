@@ -59,7 +59,7 @@ To interact with a model named `example_model`, you can use the following comman
 
 # AI Model List
 
-This document contains a list of various AI models along with brief descriptions. Each model is numbered for easy reference.
+This Telegram Open Router contains a list of various AI models along with brief descriptions. Each model is numbered for easy reference.
 
 ## AI Models
 
