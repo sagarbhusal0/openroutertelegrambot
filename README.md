@@ -1,6 +1,6 @@
 # OpenRouter Telegram Bot
 
-The OpenRouter Telegram Bot allows you to interact with various models through Telegram. This bot supports 31 different models, providing a wide range of functionalities and integrations.
+The OpenRouter Telegram Bot allows you to interact with various models through Telegram. This bot supports 33 different models, providing a wide range of functionalities and integrations.
 
 ## Features
 
