@@ -37,4 +37,6 @@ models = [
     Model("qwen/qwen-2.5-72b-instruct:free", "Qwen: Qwen 2.5 72B Instruct (free)", "Latest series of Qwen large language models with significant improvements."),
     Model("qwen/qwen-2-7b-instruct:free", "Qwen: Qwen 2 7B Instruct (free)", "Transformer-based model excelling in language understanding and coding."),
     Model("mistralai/mistral-nemo:free", "MistralAI: Mistral Nemo (free)", "Multimodal model supporting image and video inputs."),
+    Model("mistralai/mistral-small-3.1-24b-instruct:free", "MistralAI: Mistral Small 3.1 24B Instruct (free)", "Mistral Small 3.1 24B Instruct is an upgraded variant of Mistral Small 3 (2501), featuring 24 billion parameters with advanced multimodal capabilities. It provides state-of-the-art performance in text-based reasoning and vision tasks, including image analysis, programming, mathematical reasoning."),
+    Model("open-r1/olympiccoder-7b:free", "Open-R1: OlympicCoder 7B (free)", "OlympicCoder-7B is an open-source language model fine-tuned on the CodeForces-CoTs dataset, consisting of nearly 100,000 high-quality chain-of-thought examples from competitive programming contexts."),
 ]
