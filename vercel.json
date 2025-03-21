@@ -1,9 +1,9 @@
 {
   "engines": {
-    "node": "18.x"  // Ensure this matches the Node.js version you intend to use
+    "node": "18.x"  
   },
   "env": {
-    "SERVERLESS": "true"  // Boolean values should be lowercase in JSON
+    "SERVERLESS": "true"  
   },
   "routes": [
     {
@@ -31,7 +31,7 @@
   ],
   "functions": {
     "api/**/*.py": {
-      "runtime": "python3.9"  // Ensure this matches the Python version you intend to use
+      "runtime": "python3.10"
     }
   }
 }
