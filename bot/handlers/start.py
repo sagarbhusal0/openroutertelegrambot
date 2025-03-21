@@ -36,14 +36,14 @@ def split_message(text, chunk_size=4000):
 
 
 async def send_openrouter_request(message, openrouter_api_key, selected_model, user_message):
+    print(openrouter_api_key)
     """Send an async request to OpenRouter API and handle the response."""
     try:
         async with aiohttp.ClientSession() as session:
             response = await session.post(
                 url="https://openrouter.ai/api/v1/chat/completions",
                 headers={
-                    "Authorization": f"Bearer {openrouter_api_key}",
-                    "Content-Type": "application/json"
+                    "Authorization": f"Bearer {openrouter_api_key}"
                 },
                 json={
                     "model": selected_model.model_id,
@@ -74,6 +74,7 @@ async def send_openrouter_request(message, openrouter_api_key, selected_model, u
                 except json.JSONDecodeError:
                     await message.answer("Sorry, I received an invalid JSON response.")
             else:
+                print(await response.text())
                 error_msg = f"Error occurred while processing your request. Status code: {response.status}"
                 await message.answer(error_msg)
 

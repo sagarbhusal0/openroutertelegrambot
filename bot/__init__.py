@@ -13,7 +13,7 @@ ALLOWED_UPDATES = ["message", "callback_query", "inline_query"]
 
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.ERROR,
     datefmt="%Y/%m/%d %H:%M:%S",
     format="[%(asctime)s][%(name)s][%(levelname)s] ==> %(message)s",
 )
