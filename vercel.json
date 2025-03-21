@@ -1,9 +1,9 @@
 {
   "engines": {
-    "node": "18.x"  // or "20.x" or your desired version
+    "node": "18.x"  // Ensure this matches the Node.js version you intend to use
   },
   "env": {
-    "SERVERLESS": "True"
+    "SERVERLESS": "true"  // Boolean values should be lowercase in JSON
   },
   "routes": [
     {
@@ -24,14 +24,14 @@
       "status": 308
     },
     {
-      "src": "/api/((?!bot).*)",
+      "src": "/api/(?!bot).*",
       "dest": "/",
       "status": 308
     }
   ],
   "functions": {
-    "api/**/*.py": {  //This is important for python projects
-      "runtime": "python3.9" // Or python3.10, python3.11, depending on your needs
+    "api/**/*.py": {
+      "runtime": "python3.9"  // Ensure this matches the Python version you intend to use
     }
   }
 }
