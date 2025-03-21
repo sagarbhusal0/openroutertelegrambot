@@ -1,9 +1,6 @@
 {
-  "engines": {
-    "node": "18.x"  
-  },
   "env": {
-    "SERVERLESS": "true"  
+    "SERVERLESS": "true"
   },
   "routes": [
     {
