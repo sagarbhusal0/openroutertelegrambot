@@ -1,29 +1,37 @@
 {
-    "env": {
-      "SERVERLESS": "True"
+  "engines": {
+    "node": "18.x"  // or "20.x" or your desired version
+  },
+  "env": {
+    "SERVERLESS": "True"
+  },
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/api/root.py"
     },
-    "routes": [
-      {
-        "src": "/",
-        "dest": "/api/root.py"
-      },
-      {
-        "src": "/api/bot/.*",
-        "dest": "/api/bot.py"
-      },
-      {
-        "src": "/updateWebhooks",
-        "dest": "/api/webhooks.py"
-      },
-      {
-        "src": "/api",
-        "dest": "/",
-        "status": 308
-      },
-      {
-        "src": "/api/((?!bot).*)",
-        "dest": "/",
-        "status": 308
-      }
-    ]
+    {
+      "src": "/api/bot/.*",
+      "dest": "/api/bot.py"
+    },
+    {
+      "src": "/updateWebhooks",
+      "dest": "/api/webhooks.py"
+    },
+    {
+      "src": "/api",
+      "dest": "/",
+      "status": 308
+    },
+    {
+      "src": "/api/((?!bot).*)",
+      "dest": "/",
+      "status": 308
+    }
+  ],
+  "functions": {
+    "api/**/*.py": {  //This is important for python projects
+      "runtime": "python3.9" // Or python3.10, python3.11, depending on your needs
+    }
   }
+}
